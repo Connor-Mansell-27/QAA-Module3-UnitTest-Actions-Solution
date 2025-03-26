@@ -85,3 +85,13 @@ public class CalculatorTest {
 	}
 	
 }
+
+@Test
+void testDivideByZero() {
+	// Ensure that an IllegalArgumentException is thrown
+	Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		calculator.divide(6, 0);
+	}, "Division by zero should throw an IllegalArgumentException");
+}
+
+}
