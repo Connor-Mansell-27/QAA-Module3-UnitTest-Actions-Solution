@@ -1,0 +1,13 @@
+name: Hello World
+
+on:
+  # When code is pushed to the repo
+  push:
+  # When code is pulled from the repo
+  pull_request:
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest # Uses the latest ubuntu runner
+    steps:
+      - name: prints out Hello World
+        run: echo "Hello World"    
