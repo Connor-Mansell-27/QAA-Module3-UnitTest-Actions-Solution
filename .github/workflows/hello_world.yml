@@ -1,6 +1,8 @@
 name: Hello World
 
 on:
+  # Enables manual trigger
+  workflow_dispatch: 
   # When code is pushed to the repo
   push:
   # When code is pulled from the repo
