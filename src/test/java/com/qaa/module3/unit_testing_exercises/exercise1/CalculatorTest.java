@@ -1,97 +1,41 @@
 package com.qaa.module3.unit_testing_exercises.exercise1;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class CalculatorTest {
-	
-	private Calculator calculator;
 
-	/*
-	Junit is not invoking the setUp and tearDown methods, so as a workaround
-	they are currently invoked manually at the start/end of each test.
-	*/
+class CalculatorTest {
+    
+    private Calculator calculator;
 
-	@BeforeEach
-	public void setUp() {
-		calculator = new Calculator();
-	}
+    @BeforeEach
+    void setUp() {
+        calculator = new Calculator();
+    }
 
-	@AfterEach
-	public void tearDown() {
-		calculator = null;
-	}
+    @Test
+    void testAddition() {
+        assertEquals(5.0, calculator.add(2.0, 3.0));
+    }
 
-	@Test
-	public void testAddSmallNumbersTest() {
-		setUp();
-		// Arrange
-		double num1 = 10, num2 = 20;
-		double expected = 30;
-		
-		// Act
-		double actual = calculator.add(num1, num2);
-		
-		// Assert
-		Assertions.assertEquals(expected, actual);
-		tearDown();
-	}
-	
-	@Test
-	public void testSubtractSmallNumbersTest() {
-		setUp();
-		// Arrange
-		double num1 = 10, num2 = 20;
-		double expected = -10;
-		
-		// Act
-		double actual = calculator.subtract(num1, num2);
-		
-		// Assert
-		Assertions.assertEquals(expected, actual);
-		tearDown();
-	}
+    @Test
+    void testSubtraction() {
+        assertEquals(1.0, calculator.subtract(3.0, 2.0));
+    }
 
-	@Test
-	public void testMultiplySmallNumbersTest() {
-		setUp();
-		// Arrange
-		double num1 = 10, num2 = 20;
-		double expected = 200;
-		
-		// Act
-		double actual = calculator.multiply(num1, num2);
-		
-		// Assert
-		Assertions.assertEquals(expected, actual);
-		tearDown();
-	}
-	
-	@Test
-	public void testDivideSmallNumbersTest() {
-		setUp();
-		// Arrange
-		double num1 = 10, num2 = 20;
-		double expected = 0.5;
-		
-		// Act
-		double actual = calculator.divide(num1, num2);
-		
-		// Assert
-		Assertions.assertEquals(expected, actual);
-		tearDown();
-	}
-	
-}
+    @Test
+    void testMultiplication() {
+        assertEquals(6.0, calculator.multiply(2.0, 3.0));
+    }
 
-@Test
-void testDivideByZero() {
-	// Ensure that an IllegalArgumentException is thrown
-	Assertions.assertThrows(IllegalArgumentException.class, () -> {
-		calculator.divide(6, 0);
-	}, "Division by zero should throw an IllegalArgumentException");
-}
+    @Test
+    void testDivision() {
+        assertEquals(2.0, calculator.divide(6.0, 3.0));
+    }
 
+    @Test
+    void testDivisionByZeroThrowsException() {
+        assertThrows(IllegalArgumentException.class, () -> calculator.divide(5.0, 0.0));
+    }
 }
